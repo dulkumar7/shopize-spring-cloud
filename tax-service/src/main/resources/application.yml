@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    services:
+      registrationMethod: route
+
+security:
+  basic:
+    enabled: false
+
+#spring:
+#  application:
+#    name: shopizer-tax-service
+
+#eureka:
+#  client:
+#    registerWithEureka: true
+#    fetchRegistry: true
+#    serviceUrl:
+#      defaultZone: http://localhost:8761/eureka/
+#  instance:
+#    preferIpAddress: true
+#    appname: tax-service

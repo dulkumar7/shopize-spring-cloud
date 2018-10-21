@@ -1,0 +1,7 @@
+applications:
+- name: shopizer-eureka-server
+  path: ./eureka-server/target/eureka-server-1.00-SNAPSHOT.jar
+  routes:
+  - route: shopizer-eureka-server-hb-nttd.cfapps.io
+  instances: 1
+  timeout: 180

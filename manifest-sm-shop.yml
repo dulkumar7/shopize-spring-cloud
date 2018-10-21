@@ -1,0 +1,20 @@
+---
+applications:
+- name: shopizer-sm-shop
+  path: ./sm-shop/target/shopizer-sm-shop-2.2.0-SNAPSHOT.war
+  routes:
+  - route: shopizer-ui-sm-shop-hb-nttd.cfapps.io
+  instances: 1
+  services:
+  - shopizer-config-server
+  - shopizer-database
+  - shopizer-service-registry
+  - shopizer-circuit-breaker
+  - shopizer-logs-drain-all-services
+  - shopizer-logs-drain-sm-shop
+  timeout: 180
+  memory: 2G
+  buildpacks:
+  - java_buildpack
+  env:
+    SPRING_PROFILES_ACTIVE: devsmshop

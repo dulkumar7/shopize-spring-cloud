@@ -1,0 +1,8 @@
+{
+  "peers": [
+    {
+      "uri": "https://eureka-27ce1689-9c29-4459-8805-20071c8f5f77.cfapps.io",
+      "skipSslValidation": true
+    }
+  ]
+}

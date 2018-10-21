@@ -1,0 +1,18 @@
+---
+applications:
+- name: shopizer-tax-service
+  path: ./tax-service/target/shopizer-tax-service-1.00-SNAPSHOT.jar
+  routes:
+  - route: shopizer-tax-service-hb-nttd.cfapps.io
+  instances: 1
+  services:
+  - shopizer-config-server
+  - shopizer-database
+  - shopizer-service-registry
+  - shopizer-circuit-breaker
+  - shopizer-logs-drain-all-services
+  - shopizer-logs-drain-tax-service
+  buildpacks:
+  - java_buildpack
+  env:
+    SPRING_PROFILES_ACTIVE: devtaxservice
