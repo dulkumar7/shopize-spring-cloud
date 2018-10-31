@@ -92,11 +92,11 @@ public class ShoppingcartRestController {
 	
 	@DeleteMapping("/customer")
 	//@HystrixCommand(commandKey = "getShoppingCartByCustomerFromRepo", fallbackMethod = "retriveShoppingCartByCustomerFallBack")
-	public ShoppingCartResponse DeleteByCustomerId(@RequestParam String customerId) {
+	public void DeleteByCustomerId(@RequestParam String customerId) {
 		LOGGER.info("Start: ShoppingcartRestController.removeShoppingcartByCustomer(): customerId=" + customerId);
-		ShoppingCartResponse resp = shopCartService.removeShoppingcartByCustomer(customerId);
-		LOGGER.info("END: ShoppingcartRestController.removeShoppingcartByCustomer(): Response=" + resp);
-		return resp;
+		 shopCartService.removeShoppingcartByCustomer(customerId);
+		LOGGER.info("END: ShoppingcartRestController.removeShoppingcartByCustomer(): Response=" + shopCartService.removeShoppingcartByCustomer(customerId));
+	
 	}
 	
 
