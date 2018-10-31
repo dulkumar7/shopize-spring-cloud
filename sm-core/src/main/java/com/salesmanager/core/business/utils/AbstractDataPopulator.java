@@ -31,7 +31,13 @@ public abstract class AbstractDataPopulator<Source,Target> implements DataPopula
 
 	@Override
 	public Target populate(Source source, MerchantStore store, Language language) throws ConversionException{
-	   return populate(source,createTarget(), store, language);
+		try {
+			return populate(source,createTarget(), store, language);
+		}catch (RuntimeException e) {
+			// TODO: handle exception
+		}
+		
+		return null;
 	}
 	
 	protected abstract Target createTarget();

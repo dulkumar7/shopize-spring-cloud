@@ -130,7 +130,7 @@
 		<module>sm-core-modules</module>
 		<module>sm-core</module>
 		<module>sm-shop</module>
-		<module>tax-service</module>
+<!-- 		<module>tax-service</module> -->
 <module>shoppingcart-service</module>
 		<module>circuit-breaker-dashboard</module>
 	</modules>

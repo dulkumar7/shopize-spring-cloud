@@ -22,6 +22,7 @@ import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.shoppingcart.shoppingservice.entities.AuditSection;
 import com.shoppingcart.shoppingservice.entities.MerchantStore;
 import com.shoppingcart.shoppingservice.entities.ShoppingCartItem;

@@ -106,17 +106,19 @@ public class ShoppingCartDataPopulator extends AbstractDataPopulator<ShoppingCar
                     shoppingCartItem.setProductId(item.getProductId());
                     shoppingCartItem.setId(item.getId());
                     
-                    String itemName = item.getProduct().getProductDescription().getName();
+
                     if(!CollectionUtils.isEmpty(item.getProduct().getDescriptions())) {
+                        String itemName = item.getProduct().getProductDescription().getName();
                     	for(ProductDescription productDescription : item.getProduct().getDescriptions()) {
                     		if(language != null && language.getId().intValue() == productDescription.getLanguage().getId().intValue()) {
                     			itemName = productDescription.getName();
                     			break;
                     		}
                     	}
+                    	 shoppingCartItem.setName(itemName);
                     }
                     
-                    shoppingCartItem.setName(itemName);
+                   
 
                     shoppingCartItem.setPrice(pricingService.getDisplayAmount(item.getItemPrice(),store));
                     shoppingCartItem.setQuantity(item.getQuantity());

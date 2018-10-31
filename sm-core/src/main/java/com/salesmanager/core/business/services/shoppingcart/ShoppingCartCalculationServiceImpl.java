@@ -115,6 +115,7 @@ public class ShoppingCartCalculationServiceImpl implements ShoppingCartCalculati
 	}
 
 	private void updateCartModel(final ShoppingCart cartModel) throws ServiceException {
+		LOG.info("++++++++++++++ the shopping cart Id is :- "+ cartModel.getId());
 		shoppingCartService.saveOrUpdate(cartModel);
 	}
 

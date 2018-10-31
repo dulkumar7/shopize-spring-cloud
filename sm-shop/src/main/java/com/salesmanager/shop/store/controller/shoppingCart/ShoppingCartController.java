@@ -172,8 +172,7 @@ public class ShoppingCartController extends AbstractController {
 //				ShoppingCartData cart = getShoppingCartData(cartModel, language);
 //				return cart;
 //			}
-//			shoppingCart = shoppingCartFacade.getShoppingCartData(item.getCode(), store, language);
-			shoppingCart = shoppingCartServiceClient.getByCartIdAndCode(item.getCode(), store, language); 
+			shoppingCart = shoppingCartFacade.getShoppingCartData(item.getCode(), store, language);
 			
 		}
 

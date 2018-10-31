@@ -127,7 +127,8 @@ public class ShoppingCartFacadeImpl
         if ( !StringUtils.isBlank( item.getCode() ) )
         {
             // get it from the db
-            cartModel = getShoppingCartModel( item.getCode(), store );
+//            cartModel = getShoppingCartModel( item.getCode(), store );
+            cartModel = shoppingCartServiceClient.getByCartIdAndCode(item.getCode(), store);
             if ( cartModel == null )
             {
                 cartModel = createCartModel( shoppingCartData.getCode(), store,customer );
@@ -409,7 +410,7 @@ public class ShoppingCartFacadeImpl
                 if ( StringUtils.isNotBlank( shoppingCartId ) && cart == null )
                 {
                 	 LOG.info( "getByCartIdAndCodet..." );
-                    //cart = shoppingCartService.getByCode( shoppingCartId, store ); // End point
+//                    cart = shoppingCartService.getByCode( shoppingCartId, store ); // End point
                 	cart = shoppingCartServiceClient.getByCartIdAndCode(shoppingCartId, store);
                     
                 }
@@ -492,7 +493,8 @@ public class ShoppingCartFacadeImpl
                     	if ( shoppingCartItem.getId().longValue() == itemID.longValue() )
                         {
                             //shoppingCartItemSet.add( shoppingCartItem );
-                    		shoppingCartService.deleteShoppingCartItem(itemID);
+//                    		shoppingCartService.deleteShoppingCartItem(itemID);
+                    		shoppingCartServiceClient.deleteShoppingCart(itemID);
                         }
                     }
                     //cartModel.setLineItems( shoppingCartItemSet );
@@ -638,7 +640,8 @@ public class ShoppingCartFacadeImpl
 	@Override
 	public ShoppingCartData getShoppingCartData(String code, MerchantStore store, Language language) {
 		try {
-			ShoppingCart cartModel = shoppingCartService.getByCode( code, store );
+//			ShoppingCart cartModel = shoppingCartService.getByCode( code, store );
+			ShoppingCart cartModel = shoppingCartServiceClient.getByCartIdAndCode( code, store );
 			if(cartModel!=null) {
 				ShoppingCartData cart = getShoppingCartData(cartModel, language);
 				return cart;
