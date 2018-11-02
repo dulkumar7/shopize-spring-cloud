@@ -131,6 +131,7 @@
 		<module>sm-core</module>
 		<module>sm-shop</module>
 <!-- 		<module>tax-service</module> -->
+<module>config-server</module>
 <module>shoppingcart-service</module>
 		<module>circuit-breaker-dashboard</module>
 	</modules>

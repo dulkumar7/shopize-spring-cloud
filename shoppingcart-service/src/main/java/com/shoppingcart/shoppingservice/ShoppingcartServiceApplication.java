@@ -2,6 +2,7 @@ package com.shoppingcart.shoppingservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
@@ -10,7 +11,7 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 @EnableJpaAuditing
 //@EnableEurekaClient
 //@EnableDiscoveryClient
-//@RefreshScope
+@RefreshScope
 @ComponentScan(basePackages = {"com.salesmanager", "com.shoppingcart"})
 @ImportResource({"classpath*:shopizer-properties.xml"})
 public class ShoppingcartServiceApplication {

@@ -29,37 +29,34 @@ import com.squareup.okhttp.Response;
 @RestController
 @RequestMapping
 public class ShoppingcartRestController {
-	
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(ShoppingcartRestController.class);
 
 	@Autowired
 	private ShopCartService shopCartService;
 
 	@GetMapping("/{id}/{code}")
-	//@HystrixCommand(commandKey = "shoppingCartFromRepo", fallbackMethod = "retriveShoppingCartByCode")
+	 //@HystrixCommand(commandKey = "shoppingCartFromRepo", fallbackMethod =
+	// "retriveShoppingCartByCode")
 	public ShoppingCartResponse getShoppingCartByCode(@PathVariable(value = "id") int id,
 			@PathVariable(value = "code") String code) throws JsonProcessingException {
-		LOGGER.info("START: ShoppingcartRestController.getShoppingCartByCode(): id=" + id + " code=" + code );
+		LOGGER.info("START: ShoppingcartRestController.getShoppingCartByCode(): id=" + id + " code=" + code);
 		ShoppingCartResponse result = shopCartService.getByCartIdAndCode(code, id);
 		LOGGER.info("END: ShoppingcartRestController.getShoppingCartByCode(): result=" + result);
 		return result;
-		
-		
+
 	}
 
-	
 	@DeleteMapping("/{itemId}")
-	//@HystrixCommand(commandKey = "shoppingCartFromRepo", fallbackMethod = "retriveShoppingCartByCode")
-	public void removeShoppingCartByCode(@PathVariable(value = "itemId") String itemId
-			) throws JsonProcessingException {
-		
-			
-			LOGGER.info("START ++++++++++++++++++: Serivce to delete shopping cart url: - '/{itemId}' " );
-			 shopCartService.deleteShoppingCartItem(itemId);
-			LOGGER.info("START ++++++++++++++++++: deleted shopping cart with id: - ", itemId );
-		
+	// "retriveShoppingCartByCode")
+	public void removeShoppingCartByCode(@PathVariable(value = "itemId") String itemId) throws JsonProcessingException {
+
+		LOGGER.info("START ++++++++++++++++++: Serivce to delete shopping cart url: - '/{itemId}' ");
+		shopCartService.deleteShoppingCartItem(itemId);
+		LOGGER.info("END ++++++++++++++++++: deleted shopping cart with id: - ", itemId);
+
 	}
-	
+
 	/*
 	 * @RequestMapping(value = "/cart", method = RequestMethod.POST) public
 	 * ShoppingCartResponse getShoppingcartByCartId(@Valid @RequestBody CartRequest
@@ -75,11 +72,12 @@ public class ShoppingcartRestController {
 	 */
 
 	@GetMapping("/customer")
-	//@HystrixCommand(commandKey = "getShoppingCartByCustomerFromRepo", fallbackMethod = "retriveShoppingCartByCustomerFallBack")
+	// @HystrixCommand(commandKey = "getShoppingCartByCustomerFromRepo",
+	// fallbackMethod = "retriveShoppingCartByCustomerFallBack")
 	public ShoppingCartResponse getByCustomerId(@RequestParam String customerId) {
 		LOGGER.info("Start: ShoppingcartRestController.getByCustomerId(): customerId=" + customerId);
 		ShoppingCartResponse respon = shopCartService.getShoppingcartByCustomer(customerId);
-		LOGGER.info("END: ShoppingcartRestController.getByCustomerId(): result="+ respon);
+		LOGGER.info("END: ShoppingcartRestController.getByCustomerId(): result=" + respon);
 		return respon;
 	}
 
@@ -89,16 +87,20 @@ public class ShoppingcartRestController {
 	 * merchantRequest) { return
 	 * shopCartService.getByShoppingCartMerchantId(merchantRequest); }
 	 */
-	
-	@DeleteMapping("/customer")
-	//@HystrixCommand(commandKey = "getShoppingCartByCustomerFromRepo", fallbackMethod = "retriveShoppingCartByCustomerFallBack")
-	public void DeleteByCustomerId(@RequestParam String customerId) {
-		LOGGER.info("Start: ShoppingcartRestController.removeShoppingcartByCustomer(): customerId=" + customerId);
-		 shopCartService.removeShoppingcartByCustomer(customerId);
-		LOGGER.info("END: ShoppingcartRestController.removeShoppingcartByCustomer(): Response=" + shopCartService.removeShoppingcartByCustomer(customerId));
-	
-	}
-	
+
+	/*
+	 * @DeleteMapping("/customer") //@HystrixCommand(commandKey =
+	 * "getShoppingCartByCustomerFromRepo", fallbackMethod =
+	 * "retriveShoppingCartByCustomerFallBack") public void
+	 * DeleteByCustomerId(@RequestParam String customerId) { LOGGER.
+	 * info("Start: ShoppingcartRestController.removeShoppingcartByCustomer(): customerId="
+	 * + customerId); shopCartService.removeShoppingcartByCustomer(customerId);
+	 * LOGGER.
+	 * info("END: ShoppingcartRestController.removeShoppingcartByCustomer(): Response="
+	 * + shopCartService.removeShoppingcartByCustomer(customerId));
+	 * 
+	 * }
+	 */
 
 	public ShoppingCartResponse retriveShoppingCartByCode(String code) {
 

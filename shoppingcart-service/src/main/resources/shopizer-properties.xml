@@ -72,13 +72,4 @@
     
 <!--     <bean id="initData" class="com.shoppingcart.shoppingservice.services.InitStoreData"/> -->
 
-	
- 
- 
- 
-	
- 
-
-	
-	
-</beans>
+	</beans>
