@@ -1,0 +1,30 @@
+#---
+#applications:
+#- name: shoppingcart-service
+ # path: ./shoppingcart-service/target/shoppingcart-service-0.0.1-SNAPSHOT.jar
+#  routes:
+#  - route: shopizer-shoppingcart-service-hb-nttd.cfapps.io
+#  instances: 1
+#  services:
+#  - shopize-config-server
+#  - shopize-db
+#  - shopize-registry
+#  - shopize-circuit-breaker
+  
+  
+#  buildpacks:
+#  - java_buildpack
+#  env:
+#    SPRING_PROFILES_ACTIVE: shoppingcart
+    
+    
+---
+applications:
+- name: shoppingcart-service
+  memory: 1024MB
+  host: shoppingcart-service
+  path: target/shoppingcart-service-0.0.1-SNAPSHOT.jar
+  env:
+    spring.profiles.active: cloud
+  services:
+  - shopizer-eureka-server

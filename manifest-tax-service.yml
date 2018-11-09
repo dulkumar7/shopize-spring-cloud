@@ -8,7 +8,6 @@ applications:
   services:
   - shopizer-config-server
   - shopizer-database
-  - shopizer-service-registry
   - shopizer-circuit-breaker
   - shopizer-logs-drain-all-services
   - shopizer-logs-drain-tax-service

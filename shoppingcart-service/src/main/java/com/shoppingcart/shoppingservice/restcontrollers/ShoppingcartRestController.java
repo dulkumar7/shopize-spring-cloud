@@ -16,8 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-//import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.salesmanager.core.business.exception.ServiceException;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 //import com.salesmanager.shop.restclients.ShoppingCartServiceClient;
 import com.salesmanager.shop.shoppingcart.requests.objects.CartRequest;
 import com.salesmanager.shop.shoppingcart.requests.objects.CustomerRequest;
@@ -36,8 +37,9 @@ public class ShoppingcartRestController {
 	private ShopCartService shopCartService;
 
 	@GetMapping("/{id}/{code}")
-	 //@HystrixCommand(commandKey = "shoppingCartFromRepo", fallbackMethod =
-	// "retriveShoppingCartByCode")
+	@HystrixCommand(fallbackMethod = "retriveShoppingCartByCode", commandProperties = {
+			   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
+			})
 	public ShoppingCartResponse getShoppingCartByCode(@PathVariable(value = "id") int id,
 			@PathVariable(value = "code") String code) throws JsonProcessingException {
 		LOGGER.info("START: ShoppingcartRestController.getShoppingCartByCode(): id=" + id + " code=" + code);
@@ -46,6 +48,8 @@ public class ShoppingcartRestController {
 		return result;
 
 	}
+	
+	
 
 	@DeleteMapping("/{itemId}")
 	// "retriveShoppingCartByCode")
@@ -88,24 +92,15 @@ public class ShoppingcartRestController {
 	 * shopCartService.getByShoppingCartMerchantId(merchantRequest); }
 	 */
 
-	/*
-	 * @DeleteMapping("/customer") //@HystrixCommand(commandKey =
-	 * "getShoppingCartByCustomerFromRepo", fallbackMethod =
-	 * "retriveShoppingCartByCustomerFallBack") public void
-	 * DeleteByCustomerId(@RequestParam String customerId) { LOGGER.
-	 * info("Start: ShoppingcartRestController.removeShoppingcartByCustomer(): customerId="
-	 * + customerId); shopCartService.removeShoppingcartByCustomer(customerId);
-	 * LOGGER.
-	 * info("END: ShoppingcartRestController.removeShoppingcartByCustomer(): Response="
-	 * + shopCartService.removeShoppingcartByCustomer(customerId));
-	 * 
-	 * }
-	 */
+	
 
-	public ShoppingCartResponse retriveShoppingCartByCode(String code) {
+	public ShoppingCartResponse retriveShoppingCartByCode(@PathVariable(value = "id") int id,
+			@PathVariable(value = "code") String code) {
 
 		return shopCartService.getShoppingcartByCodeFallback(code);
 	}
+	
+	
 
 	public ShoppingCartResponse retriveShoppingCartByCustomer(CustomerRequest customerRequest) {
 		return shopCartService.getByShoppingCartIdFallBack(customerRequest);
