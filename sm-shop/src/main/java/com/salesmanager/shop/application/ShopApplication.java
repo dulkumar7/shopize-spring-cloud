@@ -13,7 +13,7 @@ import org.springframework.web.client.RestTemplate;
 @RefreshScope
 @EnableDiscoveryClient
 @EnableEurekaClient
-@EnableCircuitBreaker
+//@EnableCircuitBreaker
 @SpringBootApplication
 public class ShopApplication {
 

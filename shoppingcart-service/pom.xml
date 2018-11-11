@@ -54,11 +54,6 @@
 			<artifactId>spring-boot-starter-cloud-connectors</artifactId>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-annotations -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
-		</dependency>
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -87,15 +82,11 @@
 			<groupId>io.pivotal.spring.cloud</groupId>
 			<artifactId>spring-cloud-services-starter-config-client</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>io.pivotal.spring.cloud</groupId>
-			<artifactId>spring-cloud-services-starter-service-registry</artifactId>
-		</dependency>
+		<!-- <dependency> <groupId>io.pivotal.spring.cloud</groupId> <artifactId>spring-cloud-services-starter-service-registry</artifactId> 
+			</dependency> -->
 
-		<dependency>
-			<groupId>io.pivotal.spring.cloud</groupId>
-			<artifactId>spring-cloud-services-starter-circuit-breaker</artifactId>
-		</dependency>
+		<!-- <dependency> <groupId>io.pivotal.spring.cloud</groupId> <artifactId>spring-cloud-services-starter-circuit-breaker</artifactId> 
+			</dependency> -->
 
 
 		<dependency>
@@ -149,11 +140,23 @@
 			<artifactId>h2</artifactId>
 			<!--<version>${dbh2.version}</version> -->
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-core -->
+		<!-- jackson-core -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
 			<artifactId>jackson-core</artifactId>
 		</dependency>
+		<!-- jackson-annotations -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-annotations</artifactId>
+		</dependency>
+
+		<!--jackson-databind -->
+		<dependency>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+		</dependency>
+
 
 		<dependency>
 			<groupId>io.springfox</groupId>

@@ -1,5 +1,7 @@
 package com.salesmanager.shop.restclients;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
@@ -10,7 +12,6 @@ import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.esotericsoftware.minlog.Log;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.salesmanager.core.model.customer.Customer;
@@ -21,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 @Service
 @Slf4j
 public class ShoppingCartServiceClient {
-
+	private static Logger logger = LoggerFactory.getLogger(ShoppingCartServiceClient.class);
 	@Autowired
 	private RestTemplate restTemplate;
 
@@ -59,17 +60,17 @@ public class ShoppingCartServiceClient {
 	}
 
 	public ResponseEntity<ShoppingCart> invokeService(String uri, HttpMethod httpMethod, ObjectNode reqestObject) {
-		Log.info("+++++++++++++++++++++++++  Invoking external service:- ", uri);
-		Log.info("+++++++++++++++++++++++++  service method:- ", httpMethod.toString());
+		logger.info("+++++++++++++++++++++++++  Invoking external service:- ", uri);
+		logger.info("+++++++++++++++++++++++++  service method:- ", httpMethod.toString());
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-", "application/json;Charset-UTF-8");
 		restTemplate.getMessageConverters().add(new StringHttpMessageConverter());
 		ResponseEntity<ShoppingCart> shoppingCart = restTemplate.exchange(uri, httpMethod,
 				new HttpEntity<>(reqestObject, headers), ShoppingCart.class);
 		if (null != shoppingCart && null != shoppingCart.getBody()) {
-			Log.info("+++++++++++++++++++++++++ Response back from external service:- {}",
+			logger.info("+++++++++++++++++++++++++ Response back from external service:- {}",
 					shoppingCart.getBody().toString());
-			Log.info("+++++++++++++++++++++++++  Http Rsponse back from external service:- {}",
+			logger.info("+++++++++++++++++++++++++  Http Rsponse back from external service:- {}",
 					shoppingCart.getStatusCode().toString());
 			return shoppingCart;
 

@@ -18,7 +18,6 @@
 		<version>1.5.16.RELEASE</version>
 	</parent>
 
-
 	<properties>
 		<java.version>1.8</java.version>
 		<shopizer.version>2.2.0-SNAPSHOT</shopizer.version>
@@ -131,9 +130,9 @@
 		<module>sm-core</module>
 		<module>sm-shop</module>
 <!-- 		<module>tax-service</module> -->
-<module>config-server</module>
+<!-- <module>config-server</module> -->
 <module>shoppingcart-service</module>
-		<module>circuit-breaker-dashboard</module>
+		<!-- <module>circuit-breaker-dashboard</module> -->
 	</modules>
 
 	<!--<repositories>

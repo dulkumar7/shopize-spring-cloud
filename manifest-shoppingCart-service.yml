@@ -18,13 +18,3 @@
 #    SPRING_PROFILES_ACTIVE: shoppingcart
     
     
----
-applications:
-- name: shoppingcart-service
-  memory: 1024MB
-  host: shoppingcart-service
-  path: target/shoppingcart-service-0.0.1-SNAPSHOT.jar
-  env:
-    spring.profiles.active: cloud
-  services:
-  - shopizer-eureka-server
