@@ -7,6 +7,7 @@ import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.ImportResource;
@@ -16,8 +17,9 @@ import com.netflix.hystrix.contrib.metrics.eventstream.HystrixMetricsStreamServl
 
 @SpringBootApplication
 @EnableJpaAuditing
-@EnableDiscoveryClient
-//@EnableCircuitBreaker
+@EnableEurekaClient
+@EnableCircuitBreaker
+@EnableHystrixDashboard
 @RefreshScope
 @ComponentScan(basePackages = {"com.salesmanager", "com.shoppingcart"})
 @ImportResource({"classpath*:shopizer-properties.xml"})

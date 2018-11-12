@@ -38,8 +38,7 @@ public class ShoppingcartRestController {
 
 	@GetMapping("/{id}/{code}")
 	@HystrixCommand(fallbackMethod = "retriveShoppingCartByCode", commandProperties = {
-			   @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "1000")
-			})
+			@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "10000") })
 	public ShoppingCartResponse getShoppingCartByCode(@PathVariable(value = "id") int id,
 			@PathVariable(value = "code") String code) throws JsonProcessingException {
 		LOGGER.info("START: ShoppingcartRestController.getShoppingCartByCode(): id=" + id + " code=" + code);
@@ -48,11 +47,8 @@ public class ShoppingcartRestController {
 		return result;
 
 	}
-	
-	
 
 	@DeleteMapping("/{itemId}")
-	// "retriveShoppingCartByCode")
 	public void removeShoppingCartByCode(@PathVariable(value = "itemId") String itemId) throws JsonProcessingException {
 
 		LOGGER.info("START ++++++++++++++++++: Serivce to delete shopping cart url: - '/{itemId}' ");
@@ -92,15 +88,12 @@ public class ShoppingcartRestController {
 	 * shopCartService.getByShoppingCartMerchantId(merchantRequest); }
 	 */
 
-	
-
 	public ShoppingCartResponse retriveShoppingCartByCode(@PathVariable(value = "id") int id,
 			@PathVariable(value = "code") String code) {
 
 		return shopCartService.getShoppingcartByCodeFallback(code);
-	}
-	
-	
+		
+		}
 
 	public ShoppingCartResponse retriveShoppingCartByCustomer(CustomerRequest customerRequest) {
 		return shopCartService.getByShoppingCartIdFallBack(customerRequest);

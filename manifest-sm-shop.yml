@@ -9,9 +9,10 @@ applications:
     - shopizer-database
     - shopizer-config-server
     - shopizer-service-registry
+    - shopize-circuit-breaker
   timeout: 180
   memory: 2G
   buildpacks:
   - java_buildpack
   env:
-    SPRING_PROFILES_ACTIVE: pcfsmshop
+    SPRING_PROFILES_ACTIVE: devsmshop

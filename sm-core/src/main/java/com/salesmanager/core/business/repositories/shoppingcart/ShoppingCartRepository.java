@@ -22,4 +22,3 @@ public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long
 	ShoppingCart findByCustomer(Long customerId);
 	
 }
-//shoppingCartId, store 
